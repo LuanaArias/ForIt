@@ -18,7 +18,7 @@ const postTask = (req, res) => {
             title: req.body.title,
             description: req.body.description,
             completed: false,
-            createdAt: newDate()
+            createdAt: new Date()
         };
         tasks.push(newTask);
         res.status(201).json(newTask);
@@ -32,8 +32,8 @@ const postTask = (req, res) => {
 const updateTask = (req, res) => {
     const { id } = req.params;
     try {
-        tareaEncontrada = tasks.map( t => t.id === id ? { ...t, ...req.body } : t );
-        res.status(200).json({ message: "Tarea actualizada" })
+        tasks = tasks.map( t => t.id === id ? { ...t, ...req.body } : t );
+        res.status(200).json(tasks.find(t => t.id === id))
     } catch (error) {
         console.error(`Error al actualizar la tarea: ${error}`);
         res.status(500).json({ error: "Error al actualizar la tarea" });
@@ -45,7 +45,7 @@ const deleteTask = (req, res) => {
     const {id} = req.params;
 
     try{
-        tareasEncontradas = tasks.filter( t => t.id !== id );
+        tasks = tasks.filter( t => t.id !== id );
         res.status(200).json({ message: "Tarea eliminada" })
     } catch (error){
         console.error(`Error al eliminar la tarea: ${error}`);

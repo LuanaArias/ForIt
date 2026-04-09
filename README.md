@@ -94,10 +94,13 @@ Desarrollado por Luana Arias Lavia
 
 ---
 ## 📸 Capturas de pantalla
+
 ### 🏠 Vista principal
   <img width="1848" height="934" alt="image" src="https://github.com/user-attachments/assets/dfab7053-a58e-4370-b555-29de421be541" />
+  
 ### ✏️ Editar tarea
   <img width="1854" height="928" alt="image" src="https://github.com/user-attachments/assets/73e5fe33-18d3-4afc-be9c-50bb96c1dd28" />
+  
 ### 🔍 Filtros
   <img width="1854" height="921" alt="image" src="https://github.com/user-attachments/assets/0261da05-6e33-495a-8a96-cede0d00a9a3" />
 

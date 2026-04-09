@@ -22,25 +22,25 @@ Permite crear, visualizar, actualizar y eliminar tareas, además de filtrarlas p
 
 ## ▶️ Ejecutar el backend
 
-Ir a la carpeta backend:
+- Ir a la carpeta backend:
 `cd backend`
-Instalar dependencias:
+- Instalar dependencias:
 `npm install`
-Iniciar el servidor:
+- Iniciar el servidor:
 `npm run dev`
-El backend se ejecuta en:
+- El backend se ejecuta en:
 `http://localhost:3000`
 
 ---
 
 ## ▶️ Ejecutar el frontend
-Abrir otra terminal y ejecutar:
+- Abrir otra terminal y ejecutar:
 
 `cd frontend
 npm install
 npm run dev`
 
-El frontend se ejecuta en:
+- El frontend se ejecuta en:
 `http://localhost:5173`
 
 ---

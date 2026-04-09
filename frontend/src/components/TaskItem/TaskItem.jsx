@@ -6,13 +6,13 @@ export function TaskItem({ task , onDelete, onEdit, onToggle }){
                     <input
                         className="form-check-input"
                         type="checkbox"
-                        checked={task.completed}
+                        checked={Boolean(task.completed)}
                         onChange={() =>
                             onToggle(task)
                         }
                     />
                     <label className="form-check-label">
-                        {task.completed ? "Completada" : "Pendiente"}
+                        {task.completed == 1 ? "Completada" : "Pendiente"}
                     </label>
                 </div>
                 <h4 className="card-title text-capitalize">{task.title}</h4>

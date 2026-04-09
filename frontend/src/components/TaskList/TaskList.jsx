@@ -43,16 +43,14 @@ export function TaskList(){
     };
 
     const handleToggle = async (task) => {
-        const updatedTask = {
-            ...task,
-            completed: !task.completed
-        };
+    await updateTask(task.id, {
+        title: task.title,
+        description: task.description,
+        completed: task.completed ? 0 : 1
+    });
 
-        await updateTask(task.id, updatedTask);
-
-        cargarTareas();
-    };
-
+    cargarTareas();
+};
     return(
         <section>
             <div className="container py-5">

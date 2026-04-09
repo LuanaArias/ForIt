@@ -1,56 +1,82 @@
-let tasks = [];
+const db = require("../db");
 
 //Muestra tareas (Get)
 const getTasks = (req, res) => {
-    try{
-        res.status(200).json(tasks);
-    } catch (error) {
-        console.error(`Error al obtener las tareas: ${error}`);
-        res.status(500).json({ error: "Error al obtener las tareas" });
-    }
+    db.all(`SELECT * FROM tasks`, [], (error, tasks) => {
+        if (error) {
+            res.status(500).json({error: error.message})
+        }
+        res.status(200).json(tasks)
+    })
 }
 
 //Crear una tarea (Post)
 const postTask = (req, res) => {
-    try{
-        const newTask =  {
-            id: Date.now().toString(),
-            title: req.body.title,
-            description: req.body.description,
-            completed: false,
-            createdAt: new Date()
-        };
-        tasks.push(newTask);
-        res.status(201).json(newTask);
-    } catch (error) {
-        console.error(`Error al crear la tarea: ${error}`);
-        res.status(500).json({ error: "Error al crear la tarea" });
-    }
+    const {title, description} = req.body;
+    const id = Date.now().toString();
+    const createdAt = new Date().toISOString();
+
+    db.run(
+        `INSERT INTO tasks (id, title, description, completed, createdAt)
+        VALUES (?, ?, ?, ?, ?)`,
+        [id, title, description, 0, createdAt],
+        function (error){
+            if (error){
+                return res.status(500).json({error: error.message})
+            }
+            
+            res.status(201).json({
+                id,
+                title,
+                description,
+                completed: 0,
+                createdAt
+            })
+        }
+    )
 }
 
 //Actualizar una tarea (Put)
 const updateTask = (req, res) => {
     const { id } = req.params;
-    try {
-        tasks = tasks.map( t => t.id === id ? { ...t, ...req.body } : t );
-        res.status(200).json(tasks.find(t => t.id === id))
-    } catch (error) {
-        console.error(`Error al actualizar la tarea: ${error}`);
-        res.status(500).json({ error: "Error al actualizar la tarea" });
-    }
+    const {title, description, completed} = req.body;
+    db.run(
+        `UPDATE tasks
+        SET title = ?, description = ?, completed = ?
+        WHERE id = ?
+        `,
+        [title, description, completed ?? 0, id],
+    
+        function (error){
+            if (error){
+                return res.status(500).json({error: error.message})
+            }
+            
+            res.status(201).json({
+                id,
+                title,
+                description,
+                completed
+            })
+        }
+    )
 }
 
 //Eliminar una tarea (Delete)
 const deleteTask = (req, res) => {
     const {id} = req.params;
 
-    try{
-        tasks = tasks.filter( t => t.id !== id );
-        res.status(200).json({ message: "Tarea eliminada" })
-    } catch (error){
-        console.error(`Error al eliminar la tarea: ${error}`);
-        res.status(500).json({ message: "Error al eliminar la tarea" });
-    }
+    db.run(
+        `DELETE FROM tasks WHERE id = ?`,
+        [id],
+        function (error){
+            if (error){
+                return res.status(500).json({error: error.message})
+            }
+            
+            res.status(201).json({ message: "Tarea eliminada" })
+        }
+    )
 }
 
 module.exports = {

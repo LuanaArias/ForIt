@@ -1,6 +1,6 @@
-# 📝 ForIt Challenge - Task Manager
+# 📝 Taskify - Task Manager
 
-Aplicación web de lista de tareas desarrollada como parte del challenge de ingreso a Academia ForIT 2026.
+Aplicación web de lista de tareas.
 
 Permite crear, visualizar, actualizar y eliminar tareas, además de filtrarlas por estado.
 

@@ -5,13 +5,20 @@ import { TaskList } from "../../components/TaskList/TaskList";
 import LoginButton from "../../components/ui/LoginButton/LoginButton.jsx";
 import { Logo } from "../../components/ui/Logo";
 import './Home.css'
+import { LoadingScreen } from "../../components/LoadingScreen/LoadingScreen.jsx";
 export function Home(){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            setLoading(false);
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 1500);
+            return () => {
+                unsubscribe();
+                clearTimeout(timer);
+            };
         });
         return () => unsubscribe();
     }, []);
@@ -20,7 +27,7 @@ export function Home(){
         signOut(auth);
     };
 
-    if (loading) return <div className="home-container"><p>Cargando Taskify...</p></div>;
+    if (loading) return <div className="home-container"><LoadingScreen /></div>;
     return (
        <main className="home-container">
             {!user ? (

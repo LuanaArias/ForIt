@@ -13,6 +13,7 @@ db.run(
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
+    userId TEXT,
     completed INTEGER DEFAULT 0,
     createdAt TEXT )`
 );

@@ -1,0 +1,81 @@
+.home-container {
+  min-height: 100vh;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.home-header {
+  text-align: center;
+  margin: 3rem 0 0;
+}
+
+.app-subtitle {
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 10rem;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: #ffffff; 
+  border: 1px solid #ffffff;
+  padding: 6px 15px;
+  border-radius: var(--radius, 8px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #ff4d4d;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+.home-header h1, 
+.home-header h1 span, 
+.home-header h1 b {
+  font-family: var(--font-title) !important;
+  font-weight: 700;
+}
+
+.home-header h1 {
+  font-size: 32px;
+  color: var(--color-accent);
+  text-shadow: var(--shadow-glow);
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .home-container {
+    padding: 0 8%;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .home-container {
+    padding: 0 0; 
+  }
+  
+  .tasklist-card {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}

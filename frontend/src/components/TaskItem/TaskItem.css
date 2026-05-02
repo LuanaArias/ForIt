@@ -1,0 +1,134 @@
+.task-item {
+  background: rgba(26, 58, 99, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+  width: 100%;
+  margin: 0; 
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.task-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.task-status input {
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-actions button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.task-actions button:hover {
+  color: var(--color-accent);
+}
+
+.task-title {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.task-desc {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.task-item.completed {
+  opacity: 0.6;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+}
+
+@media (min-width: 768px) {
+  .task-item {
+    padding: 16px;
+  }
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.task-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.task-actions {
+  display: flex;
+  gap: 12px; 
+}
+
+.task-actions button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 16px; 
+  transition: 0.2s;
+  padding: 4px;
+}
+
+@media (min-width: 768px) {
+  .task-actions button {
+    font-size: 14px;
+  }
+}
+
+.task-title {
+  margin-top: 10px;
+  font-size: clamp(15px, 4vw, 16px); 
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.task-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  word-break: break-word;
+}

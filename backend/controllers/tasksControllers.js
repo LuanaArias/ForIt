@@ -12,14 +12,14 @@ const getTasks = (req, res) => {
 
 //Crear una tarea (Post)
 const postTask = (req, res) => {
-    const {title, description} = req.body;
+    const {title, description, userId} = req.body;
     const id = Date.now().toString();
     const createdAt = new Date().toISOString();
 
     db.run(
-        `INSERT INTO tasks (id, title, description, completed, createdAt)
-        VALUES (?, ?, ?, ?, ?)`,
-        [id, title, description, 0, createdAt],
+        `INSERT INTO tasks (id, title, description, userId, completed, createdAt)
+        VALUES (?, ?, ?, ?, ?, ?)`,
+        [id, title, description, userId, 0, createdAt],
         function (error){
             if (error){
                 return res.status(500).json({error: error.message})
@@ -29,6 +29,7 @@ const postTask = (req, res) => {
                 id,
                 title,
                 description,
+                userId,
                 completed: 0,
                 createdAt
             })

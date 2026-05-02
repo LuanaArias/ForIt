@@ -1,0 +1,13 @@
+.logo-component-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 10px;
+}
+
+.logo-image-asset {
+  width: 100%;           
+  max-width: 300px;     
+  height: auto;        
+  display: block;       
+}

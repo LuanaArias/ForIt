@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--gradient) no-repeat fixed;
+  background-size: cover;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .tasklist-title{
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-accent);
+}
+
+p, span, input, button {
+  font-family: var(--font-body);
+}
+
+
+input, textarea {
+  font-size: 14px;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}

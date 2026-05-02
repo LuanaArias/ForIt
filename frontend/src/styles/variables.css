@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+:root {
+  --color-bg: #102B53;            
+  --color-surface: #1A3A63;      
+  --color-border: #2C4E7A;
+  --color-primary: #50698D;       
+  --color-secondary: #4E7AB1;
+  --color-accent: #CEB5D4;        
+  --color-text: #EAF1FF;
+  --color-text-muted: #9FB3D1;
+
+  /*  Gradientes */
+  --gradient: linear-gradient(
+    135deg,
+    #102B53 0%,
+    #1A3A63 40%,
+    #50698D 100%
+  );
+  --gradient-primary: linear-gradient(135deg, #50698D, #CEB5D4);
+  --gradient-soft: linear-gradient(135deg, #4E7AB1, #7D9FC0);
+
+  /* Sombras */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 20px rgba(206, 181, 212, 0.25);
+
+  /* Tipografías */
+  --font-title: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Bordes */
+  --radius: 14px;
+}

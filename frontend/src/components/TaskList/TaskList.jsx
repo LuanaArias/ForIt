@@ -5,10 +5,11 @@ import {
     updateTask,
     deleteTask
 } from "../../services/tasksServices.js"
-
+import { db, auth } from "../../firebase.js";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { TaskItem } from "../TaskItem/TaskItem.jsx";
 import { TaskForm } from "../TaskForm/TaskForm.jsx";
-
+import './TaskList.css'
 
 export function TaskList(){
     const [tasks, setTasks] = useState([]);
@@ -26,23 +27,45 @@ export function TaskList(){
         }
     });
 
-    const cargarTareas = async () => {
-        const data = await getTasks();
-        setTasks(data);
-    }
+    useEffect(() => {
+        // Escuchamos cuando el usuario "vuelve" después de recargar la página
+        const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+            if (user) {
+                cargarTareas();
+            } else {
+                setTasks([]);
+            }
+        });
 
-    useEffect(() =>{
-        cargarTareas();
-    }, [])
+        return () => unsubscribeAuth();
+    }, []);
+
+    const cargarTareas = async () => {
+        try {
+            const data = await getTasks();
+            console.log("Tareas que pasaron el filtro:", data);
+            setTasks(data);
+        } catch (error) {
+            console.error("Error al cargar:", error);
+        }
+    };
 
     const handleSubmit = async (task) => {
-        if (editingTask) {
-            await updateTask(editingTask.id, task);
-            setEditingTask(null);
-        } else { 
-            await createTask(task);
+        try{
+            if (editingTask) {
+                await updateTask(editingTask.id, task);
+                setEditingTask(null);
+            } else { 
+                await createTask(task);
+            }
+            setTimeout(() => {
+                cargarTareas();
+            }, 200);
+        } catch (error) {
+            console.error("Error al guardar: ", error)
         }
-        cargarTareas();
+        
+       
     }
 
     const handleEdit = (task) => {
@@ -61,46 +84,53 @@ export function TaskList(){
         completed: task.completed ? 0 : 1
     });
 
-    cargarTareas();
+    await cargarTareas();
 };
-    return(
-        <section>
-            <div className="d-flex justify-content-center gap-2 mb-4">
-                <button 
-                    className={`btn ${filter === "all" ? "btn-primary" : "btn-outline-primary"}`}
-                    onClick={() => setFilter("all")}
-                >
-                    Todas
-                </button>
+    return (
+            <div className="tasklist-card">
+                <header className="tasklist-header">
+                    <TaskForm 
+                        onSubmit={handleSubmit} 
+                        editingTask={editingTask}
+                    />
+                </header>
+                <h2 className="tasklist-title">Mis Tareas</h2>
+                <nav className="tasklist-filters-container">
+                    <button 
+                        className={filter === "all" ? "btn-primary active" : "btn-secondary"}
+                        onClick={() => setFilter("all")}
+                    >
+                        Todas
+                    </button>
+                    <button 
+                        className={filter === "pending" ? "btn-primary active" : "btn-secondary"}
+                        onClick={() => setFilter("pending")}
+                    >
+                        Pendientes
+                    </button>
+                    <button 
+                        className={filter === "completed" ? "btn-primary active" : "btn-secondary"}
+                        onClick={() => setFilter("completed")}
+                    >
+                        Completadas
+                    </button>
+                </nav>
 
-                <button 
-                    className={`btn ${filter === "pending" ? "btn-warning" : "btn-outline-warning"}`}
-                    onClick={() => setFilter("pending")}
-                >
-                    Pendientes
-                </button>
-
-                <button 
-                    className={`btn ${filter === "completed" ? "btn-success" : "btn-outline-success"}`}
-                    onClick={() => setFilter("completed")}
-                >
-                    Completadas
-                </button>
+                <main className="tasks-list-container">
+                    {filteredTasks.length > 0 ? (
+                        filteredTasks.map(t => (
+                            <TaskItem 
+                                key={t.id}
+                                task={t}
+                                onDelete={handleDelete}
+                                onEdit={handleEdit}
+                                onToggle={handleToggle}
+                            />
+                        ))
+                    ) : (
+                        <p className="empty-message">No hay tareas para mostrar</p>
+                    )}
+                </main>
             </div>
-
-            <div className="container py-5">
-                <h1 className="h5 fw-bold mb-4 text-secondary text-center">Mis tareas</h1>
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-8 col-lg-6">
-                    
-                        <TaskForm onSubmit={handleSubmit} editingTask={editingTask}/>
-                        <div className="mt-5">
-                            {filteredTasks.map( t => ( 
-                            <TaskItem key={t.id} task={t} onDelete={handleDelete} onEdit={handleEdit} onToggle={handleToggle}/> ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+    );
 }

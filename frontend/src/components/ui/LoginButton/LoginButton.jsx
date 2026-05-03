@@ -8,6 +8,7 @@ import {
   PhoneAuthProvider
 } from "firebase/auth";
 import './LoginButton.css'
+
 export default function LoginButton() {
   useEffect(() => {
     const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
@@ -17,26 +18,26 @@ export default function LoginButton() {
         GoogleAuthProvider.PROVIDER_ID,
         {
           provider: EmailAuthProvider.PROVIDER_ID,
-          // Esto obliga a que si el mail ya existe, pida login en vez de crear cuenta
           requireDisplayName: false 
         },
-        PhoneAuthProvider.PROVIDER_ID
+        {
+          provider: PhoneAuthProvider.PROVIDER_ID,
+          // PARA CELULAR:
+          recaptchaParameters: {
+            type: 'image',
+            size: 'invisible',
+            badge: 'bottomright'
+          },
+          defaultCountry: 'AR'
+        }
       ],
-      signInFlow: 'popup',
+      
+      signInFlow: 'redirect', 
       callbacks: {
         signInSuccessWithAuthResult: () => {
-          // El login fue exitoso, el "escucha" en Home hará el resto
           return false; 
         },
-        signInFailure: (error) => {
-          // Aquí podés "advertir" si algo salió mal
-          console.error("Error en el login:", error);
-          if (error.code === 'auth/account-exists-with-different-credential') {
-            alert("Este mail ya está asociado a otro método (ej: Google). Entrá con ese.");
-          }
-        }
       },
-      // Evita problemas de duplicidad al recargar el componente
       credentialHelper: firebaseui.auth.CredentialHelper.NONE 
     });
   }, []);
@@ -47,6 +48,5 @@ export default function LoginButton() {
             <div id="firebaseui-auth-container"></div>
         </div>
     </div>
-    
   );
 }

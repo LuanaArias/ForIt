@@ -1,5 +1,5 @@
 import { auth } from "../firebase.js";
-const API = "http://localhost:3000/api/tasks";
+const API = "https://taskify-1-n4a1.onrender.com/api/tasks";
 
 //Obtener todas las tareas
 export const getTasks = async () => {

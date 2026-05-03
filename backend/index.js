@@ -6,9 +6,7 @@ const tasksRoutes = require("./routes/tasksRoutes")
 
 const app = express();
 
-app.use(cors({
-  origin: 'https://taskify-20ac7.web.app' // URL de Firebase
-}));
+app.use(cors());
 app.use(express.json());
 app.use("/api", tasksRoutes);
 

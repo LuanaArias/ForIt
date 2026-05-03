@@ -1,14 +1,17 @@
 .home-container {
   min-height: 100vh;
-  padding: 0 10%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center; 
+  width: 100%;
 }
 
 .home-header {
   text-align: center;
-  margin: 3rem 0 0;
+  margin: 2rem 0 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1.5rem;
 }
 
 .app-subtitle {
@@ -16,12 +19,23 @@
   margin-top: 8px;
 }
 
+.app-content {
+  width: 90%;            
+  max-width: 1600px;      
+  margin: 0 auto;        
+  padding: 0 1rem 4rem;  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;            
+}
 .user-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  padding: 10px 10rem;
+  width: 100%;
+  margin: 0 auto 1.5rem;
+  padding: 10px 0; 
 }
 
 .logout-btn {
@@ -34,17 +48,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.logout-btn:hover {
-  background-color: #ff4d4d;
-  color: white;
-  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
-  transform: translateY(-1px);
-}
-
-.logout-btn:active {
-  transform: translateY(0);
+  white-space: nowrap; 
 }
 
 .home-header h1, 
@@ -55,27 +59,54 @@
 }
 
 .home-header h1 {
-  font-size: 32px;
+  font-size: clamp(1.6rem, 5vw, 2rem); 
   color: var(--color-accent);
   text-shadow: var(--shadow-glow);
   margin-bottom: 10px;
+  line-height: 1.2;
 }
 
 @media (min-width: 768px) {
-  .home-container {
-    padding: 0 8%;
+  .app-content {
+    width: 95%;        
+    gap: 30px;
   }
 }
 
+@media (max-width: 992px) {
+  .user-info {
+    padding: 0 1.5rem; 
+  }
+}
+
+@media (max-width: 480px) {
+  .home-header {
+    margin-top: 1.5rem;
+  }
+  
+  .user-info {
+    gap: 10px;
+  }
+
+  .logout-btn {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+}
 
 @media (min-width: 1200px) {
   .home-container {
-    padding: 0 0; 
+    padding: 0; 
   }
   
   .tasklist-card {
     width: 100%;
-    max-width: 750px;
+    max-width: 800px; 
     margin: 0 auto;
+  }
+
+  .app-content {
+    width: 100%;      
+    padding: 0 0 5rem;
   }
 }

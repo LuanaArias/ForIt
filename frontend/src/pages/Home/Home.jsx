@@ -6,6 +6,7 @@ import LoginButton from "../../components/ui/LoginButton/LoginButton.jsx";
 import { Logo } from "../../components/ui/Logo";
 import './Home.css'
 import { LoadingScreen } from "../../components/LoadingScreen/LoadingScreen.jsx";
+import { WelcomeText } from "../../components/ui/WelcomeText/WelcomeText.jsx";
 export function Home(){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ export function Home(){
                 <div className="login-wrapper">
                     <header className="home-header">
                         <Logo />
-                        <p className="app-subtitle">Gestor de tareas profesional</p>
+                        <p className="app-subtitle">Tu centro de comando personal.</p>
                     </header>
                     <LoginButton /> 
                 </div>
@@ -47,7 +48,7 @@ export function Home(){
                             <Logo />
                             <button onClick={handleLogout} className="logout-btn">Cerrar Sesión</button>
                         </div>
-                        <h1 className="home-title"><span>Bienvenido/a, <b>{user.displayName || "Usuario"}</b></span></h1>
+                        <WelcomeText name={user.displayName} />
                     </header>
                     <TaskList />
                 </div>

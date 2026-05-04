@@ -1,0 +1,79 @@
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Inputs */
+.email-form input {
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.2);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.email-form input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.email-form input:focus {
+  outline: none;
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 10px rgba(206,181,212,0.3);
+}
+
+/* Botón */
+.email-form button {
+  margin-top: 5px;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+
+  background: var(--gradient-soft);
+  color: #fff;
+
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.email-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.reset-password {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-align: right;
+  margin-top: -5px;
+}
+
+.reset-password:hover {
+  color: var(--color-accent);
+} 
+
+/* Toggle */
+.toggle {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.toggle:hover {
+  opacity: 0.8;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: center;
+}

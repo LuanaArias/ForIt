@@ -2,32 +2,62 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   width: 100%;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  padding: 20px;
 }
 
 .home-header {
   text-align: center;
-  margin: 2rem 0 0;
+  margin: 1rem 0 1rem;
   width: 100%;
   max-width: 100%;
   padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page .home-header {
+  margin-bottom: 10px;
+}
+
+.home-container .home-header {
+  margin-bottom: 20px;
+}
+
+.home-header svg,
+.home-header img {
+  width: 280px;
+  height: auto;
 }
 
 .app-subtitle {
   color: var(--color-text-muted);
-  margin-top: 8px;
+  margin-top: 4px;
+  font-size: 0.9rem;
 }
 
 .app-content {
-  width: 90%;            
-  max-width: 1600px;      
-  margin: 0 auto;        
-  padding: 0 1rem 4rem;  
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+
   display: flex;
   flex-direction: column;
-  gap: 20px;            
+  gap: 20px;
 }
+
 .user-info {
   display: flex;
   justify-content: space-between;
@@ -35,12 +65,12 @@
   gap: 15px;
   width: 100%;
   margin: 0 auto 1.5rem;
-  padding: 10px 0; 
+  padding: 10px 0;
 }
 
 .logout-btn {
   background-color: transparent;
-  color: #ffffff; 
+  color: #ffffff;
   border: 1px solid #ffffff;
   padding: 6px 15px;
   border-radius: var(--radius, 8px);
@@ -48,34 +78,39 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
-.home-header h1, 
-.home-header h1 span, 
+.logout-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.home-header h1,
+.home-header h1 span,
 .home-header h1 b {
   font-family: var(--font-title) !important;
   font-weight: 700;
 }
 
 .home-header h1 {
-  font-size: clamp(1.6rem, 5vw, 2rem); 
+  font-size: clamp(1.6rem, 5vw, 2rem);
   color: var(--color-accent);
   text-shadow: var(--shadow-glow);
   margin-bottom: 10px;
   line-height: 1.2;
 }
 
+
 @media (min-width: 768px) {
   .app-content {
-    width: 95%;        
+    width: 95%;
     gap: 30px;
   }
 }
 
 @media (max-width: 992px) {
   .user-info {
-    padding: 0 1.5rem; 
+    padding: 0 1.5rem;
   }
 }
 
@@ -83,7 +118,7 @@
   .home-header {
     margin-top: 1.5rem;
   }
-  
+
   .user-info {
     gap: 10px;
   }
@@ -95,18 +130,14 @@
 }
 
 @media (min-width: 1200px) {
-  .home-container {
-    padding: 0; 
-  }
-  
   .tasklist-card {
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
     margin: 0 auto;
   }
 
   .app-content {
-    width: 100%;      
+    width: 100%;
     padding: 0 0 5rem;
   }
 }

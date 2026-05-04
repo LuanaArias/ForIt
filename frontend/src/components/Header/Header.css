@@ -1,0 +1,39 @@
+.home-header {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.header-bar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+}
+
+/* Subtítulo */
+.app-subtitle {
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+/* Logout */
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--color-text);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255,255,255,0.1);
+}

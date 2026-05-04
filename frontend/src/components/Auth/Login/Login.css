@@ -3,23 +3,30 @@
   justify-content: center;
   align-items: center;
   font-family: var(--font-body);
+  width: 100%;
+  padding: 20px;
 }
 
+/* CARD */
 .login-box {
   background: rgba(26, 58, 99, 0.6);
   backdrop-filter: blur(18px);
   padding: 40px 30px;
   border-radius: var(--radius);
-  width: 600px;
+  width: 100%;
+  max-width: 680px;
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(255,255,255,0.08);
   text-align: center;
   margin-top: 2rem;
+
+  animation: fadeUp 0.6s ease;
 }
 
+/* TITULOS */
 .login-box h2 {
   font-family: var(--font-title);
-  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 4vw, 2rem);
   color: var(--color-text);
   margin-bottom: 5px;
 }
@@ -27,7 +34,7 @@
 .login-box p {
   color: var(--color-text-muted);
   margin-bottom: 20px;
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
 }
 
 /* Divider */
@@ -51,4 +58,35 @@
   top: 50%;
   left: 0;
   z-index: -1;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 30px 20px;
+    margin-top: 1rem;
+  }
+
+  .login-box h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+  .login-box {
+    max-width: 90%;
+  }
 }

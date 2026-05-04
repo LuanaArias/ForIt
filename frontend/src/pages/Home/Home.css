@@ -1,3 +1,4 @@
+/* CONTENEDOR GENERAL (APP LOGUEADA) */
 .home-container {
   min-height: 100vh;
   display: flex;
@@ -6,47 +7,18 @@
   width: 100%;
 }
 
+/* CONTENEDOR LOGIN */
 .login-page {
   min-height: 100vh;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: var(--gradient);
   padding: 20px;
 }
 
-.home-header {
-  text-align: center;
-  margin: 1rem 0 1rem;
-  width: 100%;
-  max-width: 100%;
-  padding: 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-page .home-header {
-  margin-bottom: 10px;
-}
-
-.home-container .home-header {
-  margin-bottom: 20px;
-}
-
-.home-header svg,
-.home-header img {
-  width: 280px;
-  height: auto;
-}
-
-.app-subtitle {
-  color: var(--color-text-muted);
-  margin-top: 4px;
-  font-size: 0.9rem;
-}
-
+/* CONTENIDO PRINCIPAL (APP) */
 .app-content {
   width: 90%;
   max-width: 1200px;
@@ -55,52 +27,19 @@
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
-.user-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  width: 100%;
-  margin: 0 auto 1.5rem;
-  padding: 10px 0;
-}
-
-.logout-btn {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 6px 15px;
-  border-radius: var(--radius, 8px);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.logout-btn:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-.home-header h1,
-.home-header h1 span,
-.home-header h1 b {
-  font-family: var(--font-title) !important;
-  font-weight: 700;
-}
-
-.home-header h1 {
-  font-size: clamp(1.6rem, 5vw, 2rem);
+/* TITULO BIENVENIDA (si usás WelcomeText) */
+.app-content h1 {
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   color: var(--color-accent);
   text-shadow: var(--shadow-glow);
-  margin-bottom: 10px;
-  line-height: 1.2;
 }
 
-
+/* RESPONSIVE */
 @media (min-width: 768px) {
   .app-content {
     width: 95%;
@@ -108,36 +47,14 @@
   }
 }
 
-@media (max-width: 992px) {
-  .user-info {
-    padding: 0 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-header {
-    margin-top: 1.5rem;
-  }
-
-  .user-info {
-    gap: 10px;
-  }
-
-  .logout-btn {
-    padding: 5px 12px;
-    font-size: 0.8rem;
-  }
-}
-
 @media (min-width: 1200px) {
-  .tasklist-card {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
   .app-content {
     width: 100%;
     padding: 0 0 5rem;
+  }
+
+  .tasklist-card {
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
